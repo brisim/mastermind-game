@@ -1,6 +1,6 @@
 import React from 'react';
 import GameControl from './components/GameControl'
-import GameAttempts from './components/GameAttempts'
+import CodeBreakerAttempt from './components/CodeBreakerAttempt'
 import './App.css';
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
                     </li>
                 </ul>
                 <h3>Test</h3>
-                 <GameAttempts/>
+                 <CodeBreakerAttempt/>
                 <GameControl/>
 
         </div>
