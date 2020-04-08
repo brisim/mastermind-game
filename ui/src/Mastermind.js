@@ -1,9 +1,9 @@
 import React from 'react';
-import GameControl from './components/GameControl'
+import ControlPanel from './components/ControlPanel'
 import CodeBreakerAttempt from './components/CodeBreakerAttempt'
 import './App.css';
 
-function App() {
+function Mastermind() {
   return (
     <div className="App">
         <div className="col-sm-8 text-left">
@@ -33,11 +33,11 @@ function App() {
                 </ul>
                 <h3>Test</h3>
                  <CodeBreakerAttempt/>
-                <GameControl/>
+                <ControlPanel/>
 
         </div>
     </div>
   );
 }
 
-export default App;
+export default Mastermind;
