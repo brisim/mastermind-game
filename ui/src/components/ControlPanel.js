@@ -1,7 +1,7 @@
 import * as React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
-class GameControl extends React.Component {
+class ControlPanel extends React.Component {
     render() {
         return <div className="row border border-dark">
            <div class="col-sm-4">
@@ -31,4 +31,4 @@ class GameControl extends React.Component {
     }
 }
 
-export default GameControl;
+export default ControlPanel;
