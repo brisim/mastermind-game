@@ -1,7 +1,7 @@
 import React from 'react';
 import ControlPanel from './components/ControlPanel'
 import './App.css';
-import Row from "./components/Row";
+import RowPanel from "./components/RowPanel";
 
 function Mastermind() {
   return (
@@ -32,7 +32,7 @@ function Mastermind() {
                     </li>
                 </ul>
                 <h3>Test</h3>
-                 <Row/>
+                 <RowPanel/>
                 <ControlPanel/>
 
         </div>
