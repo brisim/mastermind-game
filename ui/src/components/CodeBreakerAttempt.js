@@ -6,8 +6,8 @@ export default class CodeBreakerAttempt extends Component {
         let pegs = [1, 2, 3, 4];
         let className = "btn btn-white btn-circle btn-xl border border-dark";
         return (
-        <div className="row">
-            <div className="col-sm-4">
+        <div className="row border border-dark">
+            <div className="col">
                 {pegs.map( pegNr => {
                     return <Peg key={pegNr} className={className}/>
                 })}

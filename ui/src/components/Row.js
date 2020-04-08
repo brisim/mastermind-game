@@ -6,10 +6,10 @@ export default class Row extends React.Component{
     render() {
         return (
            <div className="row">
-               <div className="col-sm-10">
+               <div className="col">
                    <CodeBreakerAttempt/>
                </div>
-               <div className="col-sm-4">
+               <div className="col">
                <CodeMakerFeedback/>
                </div>
            </div>

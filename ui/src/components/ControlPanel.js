@@ -6,7 +6,7 @@ import Peg from "./Peg";
 
 class ControlPanel extends React.Component {
     render() {
-        return <div className="row border border-dark">
+        return <div className="row">
            <div class="col-sm-4">
                {colors.map(color =><Peg key={color.id} className={color.className}/>
                )}

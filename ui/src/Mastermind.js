@@ -5,7 +5,8 @@ import RowPanel from "./components/RowPanel";
 
 function Mastermind() {
   return (
-    <div className="App">
+    <div className="container">
+        <div className="row">
         <div className="col-sm-8 text-left">
             <h1>Mastermind</h1>
             <p>The play of the game goes as follows:</p>
@@ -32,9 +33,11 @@ function Mastermind() {
                     </li>
                 </ul>
                 <h3>Test</h3>
-                 <RowPanel/>
+            <div className="border border-dark">
+                <RowPanel/>
                 <ControlPanel/>
-
+            </div>
+        </div>
         </div>
     </div>
   );

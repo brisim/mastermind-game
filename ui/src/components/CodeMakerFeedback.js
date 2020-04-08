@@ -9,7 +9,7 @@ export default class CodeMakerFeedback extends React.Component{
     render() {
         let pegs = [1, 2, 3, 4];
         return (
-            <div className="row">
+            <div className="row border border-dark">
                 <div className="col-sm-2">
                     <div className="row">
                         {this.renderPeg(0)}
