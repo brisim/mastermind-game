@@ -14,6 +14,6 @@ describe("<CodeBreakerAttempt />", () => {
         const pegs = wrapper.find(Peg);
 
         expect(pegs).toHaveLength(4);
-    })
+    });
 
 })
