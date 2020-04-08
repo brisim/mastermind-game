@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "className": "btn btn-primary btn-circle btn-xl"
+  },
+  {
+    "id": 2,
+    "className": "btn btn-success btn-circle btn-xl"
+  },
+  {
+    "id": 3,
+    "className": "btn btn-info btn-circle btn-xl"
+  },
+  {
+    "id": 4,
+    "className": "btn btn-warning btn-circle btn-xl"
+  },
+  {
+    "id": 5,
+    "className": "btn btn-danger btn-circle btn-xl"
+  },
+  {
+    "id": 6,
+    "className": "btn btn-dark btn-circle btn-xl"
+  }
+]
