@@ -7,11 +7,11 @@ import Peg from "./Peg";
 class ControlPanel extends React.Component {
     render() {
         return <div className="row">
-           <div class="col-sm-4">
+           <div className="col-sm-4">
                {colors.map(color =><Peg key={color.id} className={color.className}/>
                )}
            </div>
-                <div class="col-sm-4">
+                <div className="col-sm-4">
                     <div className="row">
                 <button type="button" id="check" className="btn btn-success">Check</button>
                     </div>
