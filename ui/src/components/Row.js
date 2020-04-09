@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PegList from "./PegList";
+import CodeBreakerAttempt from "./CodeBreakerAttempt";
 import CodeMakerFeedback from "./CodeMakerFeedback";
 
 export default class Row extends React.Component{
@@ -7,7 +7,7 @@ export default class Row extends React.Component{
         return (
            <div className="row">
                <div className="col-8">
-                   <PegList className={this.props.className}/>
+                   <CodeBreakerAttempt className={this.props.className}/>
                </div>
                <div className="col-4">
                <CodeMakerFeedback/>

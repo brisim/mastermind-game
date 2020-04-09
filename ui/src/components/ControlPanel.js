@@ -10,7 +10,7 @@ class ControlPanel extends React.Component {
             <div className="row border border-dark">
                 <div className="col-sm-1"></div>
                 <div className="col-sm-5">
-                   {colors.map(color =><Peg key={color.id} className={color.className}/>
+                   {colors.map(color =><Peg key={color.id} className={color.className} changeColor={this.props.changeColor}/>
                    )}
                </div>
                 <div className="col-sm-2"></div>
