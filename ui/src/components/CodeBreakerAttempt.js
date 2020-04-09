@@ -7,7 +7,7 @@ export default class CodeBreakerAttempt extends Component {
         let className = "btn btn-white btn-circle btn-xl border border-dark";
         return (
         <div className="row border border-dark">
-            <div className="col">
+            <div className="col-12">
                 {pegs.map( pegNr => {
                     return <Peg key={pegNr} className={className}/>
                 })}

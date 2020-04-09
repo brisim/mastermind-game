@@ -32,13 +32,14 @@ function Mastermind() {
                     (b) No Key Peg to indicate a wrong color that does not appear in the secret code.
                     </li>
                 </ul>
-                <h3>Test</h3>
-            <div className="border border-dark">
-                <RowPanel/>
-                <ControlPanel/>
             </div>
         </div>
-        </div>
+         <div className="row">
+                <div className="col-sm-6 border border-dark">
+                    <RowPanel/>
+                    <ControlPanel/>
+                </div>
+            </div>
     </div>
   );
 }

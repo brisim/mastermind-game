@@ -10,14 +10,12 @@ export default class CodeMakerFeedback extends React.Component{
         return (
             <div className="row border border-dark">
                 <div className="col-sm-2">
-                    <div className="row">
                         {this.renderPeg(0)}
                         {this.renderPeg(1)}
-                    </div>
-                    <div className="row">
+                </div>
+                <div className="col-sm-2">
                         {this.renderPeg(2)}
                         {this.renderPeg(3)}
-                    </div>
                 </div>
             </div>
         );
