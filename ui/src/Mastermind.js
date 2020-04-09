@@ -35,8 +35,11 @@ function Mastermind() {
             </div>
         </div>
          <div className="row">
-                <div className="col-sm-6 border border-dark">
+                <div className="col-sm-6">
                     <RowPanel/>
+                    <div className="row">
+                        <div className="col border border-dark text-danger text-center"> <b> Control Panel </b> </div>
+                    </div>
                     <ControlPanel/>
                 </div>
             </div>
