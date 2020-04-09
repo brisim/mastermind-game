@@ -14,18 +14,23 @@ class Mastermind extends React.Component {
 
         this.state = {
             activeRow: 1,
+            activePeg: 1,
             attempt: this.attempt
         }
     }
 
     intiAttempt = () => {
         for(let i = 0; i<4; i++) {
-            this.attempt.push({id: i, className: this.defaultClassName});
+            this.attempt.push({id: i, color: this.defaultClassName});
         }
     }
 
-    changeColor = () => {
-        console.log("Here");
+    changeColor = (color) => {
+        let activePegCopy = {...this.state.attempt[this.state.activePeg -1]};
+        activePegCopy.color = color;
+
+        this.state.attempt[this.state.activePeg -1] = activePegCopy;
+        this.setState({attempt: this.state.attempt });
     }
 
     render() {
@@ -66,7 +71,7 @@ class Mastermind extends React.Component {
                         <div className="row">
                             <div className="col border border-dark text-danger text-center"> <b> Secret Key </b> </div>
                         </div>
-                        <RowPanel className={this.defaultClassName} attempt={this.state.attempt}/>
+                        <RowPanel attempt={this.state.attempt}/>
                         <div className="row">
                             <div className="col border border-dark text-danger text-center"> <b> Control Panel </b> </div>
                         </div>
