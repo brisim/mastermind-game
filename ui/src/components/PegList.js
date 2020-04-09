@@ -1,15 +1,14 @@
 import React, {Component} from "react";
 import Peg from "./Peg";
 
-export default class CodeBreakerAttempt extends Component {
+export default class PegList extends Component {
     render() {
         let pegs = [1, 2, 3, 4];
-        let className = "btn btn-white btn-circle btn-xl border border-dark";
         return (
         <div className="row border border-dark">
             <div className="col-12">
                 {pegs.map( pegNr => {
-                    return <Peg key={pegNr} className={className}/>
+                    return <Peg key={pegNr} className={this.props.className}/>
                 })}
             </div>
         </div>

@@ -2,9 +2,13 @@ import React from 'react';
 import ControlPanel from './components/ControlPanel'
 import './App.css';
 import RowPanel from "./components/RowPanel";
+import PegList from "./components/PegList";
 
 function Mastermind() {
-  return (
+    let defaultClassName = "btn btn-white btn-circle btn-xl border border-dark";
+    let secretKeyClassName = "btn btn-dark btn-circle btn-xl border border-dark";
+
+    return (
     <div className="container">
         <div className="row">
         <div className="col-sm-8 text-left">
@@ -36,7 +40,12 @@ function Mastermind() {
         </div>
          <div className="row">
                 <div className="col-sm-6">
-                    <RowPanel/>
+                    <PegList className={secretKeyClassName} />
+                    <div className="row">
+
+                        <div className="col border border-dark text-danger text-center"> <b> Secret Key </b> </div>
+                    </div>
+                    <RowPanel className={defaultClassName}/>
                     <div className="row">
                         <div className="col border border-dark text-danger text-center"> <b> Control Panel </b> </div>
                     </div>

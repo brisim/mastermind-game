@@ -1,7 +1,7 @@
 import React from "react";
 import {shallow} from "enzyme";
 import CodeMakerFeedback from "./CodeMakerFeedback";
-import CodeBreakerAttempt from "./CodeBreakerAttempt";
+import PegList from "./PegList";
 import Row from "./Row";
 
 describe("<Row/>", () => {
@@ -9,12 +9,12 @@ describe("<Row/>", () => {
         expect(true).toBe(true);
     });
 
-    it("should have CodeMakerFeedback and CodeBreakerAttempt", () => {
+    it("should have CodeMakerFeedback and PegList", () => {
         const wrapper = shallow(<Row/>);
         const feedbackRow = wrapper.find(CodeMakerFeedback);
-        const attemptRow = wrapper.find(CodeBreakerAttempt);
+        const pegList = wrapper.find(PegList);
 
         expect(feedbackRow.exists()).toBe(true);
-        expect(attemptRow.exists()).toBe(true);
+        expect(pegList.exists()).toBe(true);
     })
 })

@@ -21,6 +21,6 @@
   },
   {
     "id": 6,
-    "className": "btn btn-dark btn-circle btn-xl"
+    "className": "btn btn-secondary btn-circle btn-xl"
   }
 ]
