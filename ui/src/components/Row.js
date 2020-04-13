@@ -10,7 +10,7 @@ export default class Row extends React.Component{
                    <CodeBreakerAttempt attempt={this.props.attempt}/>
                </div>
                <div className="col-4">
-               <CodeMakerFeedback/>
+               <CodeMakerFeedback feedback={this.props.feedback}/>
                </div>
            </div>
         )

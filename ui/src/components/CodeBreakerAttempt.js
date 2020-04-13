@@ -3,7 +3,6 @@ import Peg from "./Peg";
 
 export default class CodeBreakerAttempt extends Component {
     render() {
-        console.log(this.props.attempt);
         let pegs = [1, 2, 3, 4];
         return (
         <div className="row border border-dark">
