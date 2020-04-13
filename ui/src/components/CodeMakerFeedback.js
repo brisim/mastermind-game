@@ -2,11 +2,12 @@ import * as React from 'react';
 import Peg from "./Peg";
 
 export default class CodeMakerFeedback extends React.Component{
-     className = "btn btn-white btn-circle btn-l border border-dark";
+     className = "btn btn-dark btn-circle btn-l border border-dark";
     renderPeg(key) {
-        return <Peg key={key} className={this.className}/>
+        return <Peg key={key} className={this.props.feedback[key].color}/>
     }
     render() {
+
         return (
             <div className="row border border-dark">
                 <div className="col-sm-2">
