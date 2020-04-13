@@ -64,15 +64,15 @@ class Mastermind extends React.Component {
 
     checkAttempt = (event) => {
         //api
-        const activeFeedback = this.state.rows[this.state.activeRow-1].feedback;
-
-        for(let i = 0; i<4; i++) {
-            let feedbackPegCopy = {...activeFeedback[i]};
-            feedbackPegCopy.color = feedback[i].className;
-            activeFeedback[i] = feedbackPegCopy;
-        }
-
         if(!this.gameOver()) {
+            const activeFeedback = this.state.rows[this.state.activeRow-1].feedback;
+
+            for(let i = 0; i<4; i++) {
+                let feedbackPegCopy = {...activeFeedback[i]};
+                feedbackPegCopy.color = feedback[i].className;
+                activeFeedback[i] = feedbackPegCopy;
+            }
+
             let nextAttempt = this.state.activeRow - 1;
             let activePeg = 1;
             this.setState({activeRow: nextAttempt, activePeg: activePeg });
@@ -82,7 +82,7 @@ class Mastermind extends React.Component {
     reset = () => {
         let defaultRows = [];
         for(let i = 0; i<10; i++) {
-            defaultRows[i] = defaultRowConfiguration;
+            defaultRows[i] = {...defaultRowConfiguration};
         }
         this.setState({activeRow: 10, activePeg:1, rows: defaultRows});
     }
