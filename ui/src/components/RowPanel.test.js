@@ -9,7 +9,10 @@ describe("<RowPanel/>", () => {
     });
 
     it("should render 10 <Row/>", () => {
-        const wrapper = shallow(<RowPanel/>);
+        const rowConfiguration = {attempt:[], feedback:[]};
+        const rowList = new Array(10);
+        rowList.fill(rowConfiguration);
+        const wrapper = shallow(<RowPanel rows={rowList}/>);
         const rows = wrapper.find(Row);
 
         expect(rows).toHaveLength(10);

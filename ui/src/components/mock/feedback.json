@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "color": "btn btn-white border border-dark btn-circle btn-l"
+  },
+  {
+    "id": 2,
+    "color": "btn btn-danger btn-circle btn-l"
+  },
+  {
+    "id": 3,
+    "color": "btn btn-white border border-dark btn-circle btn-l"
+  },
+  {
+    "id": 4,
+    "color": "btn btn-danger btn-circle btn-l"
+  }
+]

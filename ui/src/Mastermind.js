@@ -4,7 +4,7 @@ import './App.css';
 import RowPanel from "./components/RowPanel";
 import SecretKey from "./components/SecretKey";
 import Rules from "./components/Rules";
-import feedback from "./components/data/feedback";
+import feedback from "./components/mock/feedback";
 
 class Mastermind extends React.Component {
     defaultClassName = "btn btn-white btn-circle btn-xl border border-dark";
@@ -68,7 +68,7 @@ class Mastermind extends React.Component {
 
             for(let i = 0; i<4; i++) {
                 let feedbackPegCopy = {...activeFeedback[i]};
-                feedbackPegCopy.color = feedback[i].className;
+                feedbackPegCopy.color = feedback[i].color;
                 activeFeedback[i] = feedbackPegCopy;
             }
 
