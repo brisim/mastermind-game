@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "color": "btn btn-primary btn-circle btn-xl"
+  },
+  {
+    "id": 2,
+    "color": "btn btn-success btn-circle btn-xl"
+  },
+  {
+    "id": 3,
+    "color": "btn btn-info btn-circle btn-xl"
+  },
+  {
+    "id": 4,
+    "color": "btn btn-warning btn-circle btn-xl"
+  }
+  ]
