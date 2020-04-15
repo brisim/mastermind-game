@@ -4,7 +4,7 @@ import Peg from "./Peg";
 export default class CodeMakerFeedback extends React.Component{
      className = "btn btn-dark btn-circle btn-l border border-dark";
     renderPeg(key) {
-        return <Peg key={key} className={this.props.feedback[key].color}/>
+        return <Peg key={key} dataKey={"feedbackPeg_" + key + "_" + this.props.dataKey} className={this.props.feedback[key].color}/>
     }
     render() {
 

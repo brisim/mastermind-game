@@ -8,6 +8,7 @@ export default class RowPanel extends Component {
                rows.map( rowId =>  <Row key={rowId}
                                         attempt={this.props.rows[rowId -1].attempt}
                                         feedback = {this.props.rows[rowId -1].feedback}
+                                        dataKey={rowId}
                />)
         )
     }

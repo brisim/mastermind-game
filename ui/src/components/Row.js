@@ -7,10 +7,10 @@ export default class Row extends React.Component{
         return (
            <div className="row">
                <div className="col-8">
-                   <CodeBreakerAttempt attempt={this.props.attempt}/>
+                   <CodeBreakerAttempt dataKey={this.props.dataKey} attempt={this.props.attempt}/>
                </div>
                <div className="col-4">
-               <CodeMakerFeedback feedback={this.props.feedback}/>
+               <CodeMakerFeedback dataKey={this.props.dataKey} feedback={this.props.feedback}/>
                </div>
            </div>
         )
