@@ -5,7 +5,6 @@ import RowPanel from "./components/RowPanel";
 import SecretKey from "./components/SecretKey";
 import Rules from "./components/Rules";
 import feedback from "./components/data/feedback";
-import defaultRowConfiguration from './components/data/defaultRowConfiguration'
 
 class Mastermind extends React.Component {
     defaultClassName = "btn btn-white btn-circle btn-xl border border-dark";
@@ -32,15 +31,15 @@ class Mastermind extends React.Component {
         }
     }
 
-    initRows = () => {
-        for(let i = 0; i<10; i++) {
-            this.rows[i] = { attempt : [...this.attempt], feedback: [...this.feedback]}
-        }
-    }
-
     initFeedback = () => {
         for(let i = 0; i<4; i++) {
             this.feedback.push({id: i, color: this.feedbackDefaultClassName});
+        }
+    }
+
+    initRows = () => {
+        for(let i = 0; i<10; i++) {
+            this.rows[i] = { attempt : [...this.attempt], feedback: [...this.feedback]}
         }
     }
 
@@ -80,11 +79,10 @@ class Mastermind extends React.Component {
     }
 
     reset = () => {
-        let defaultRows = [];
         for(let i = 0; i<10; i++) {
-            defaultRows[i] = {...defaultRowConfiguration};
+            this.rows[i] = {attempt: [...this.attempt], feedback:[...this.feedback] };
         }
-        this.setState({activeRow: 10, activePeg:1, rows: defaultRows});
+        this.setState({activeRow: 10, activePeg:1, rows: this.rows});
     }
 
     render() {
