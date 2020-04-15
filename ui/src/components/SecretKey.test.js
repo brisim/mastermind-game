@@ -2,7 +2,6 @@ import React from "react";
 import {shallow} from 'enzyme';
 import Peg from "./Peg";
 import SecretKey from './SecretKey';
-import feedback from "./mock/feedback";
 
 describe("<SecretKey />", () => {
 
