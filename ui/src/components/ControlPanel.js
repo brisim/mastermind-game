@@ -3,8 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import colors from './data/colors';
 import Peg from "./Peg";
+import axios from 'axios';
+import {baseUrl} from "./api/baseUrl";
 
 class ControlPanel extends React.Component {
+
+    async start() {
+       await axios.get(`${baseUrl}/start`);
+    }
 
     render() {
         return (
@@ -22,6 +28,9 @@ class ControlPanel extends React.Component {
                          <div className="row">
                             <button type="button" id="reset" className="btn btn-danger" onClick={this.props.reset}>Reset</button>
                          </div>
+                       <div className="row">
+                           <button type="button" id="start" className="btn btn-info" onClick={this.start}>Start</button>
+                       </div>
                    </div>
         </div>
         )

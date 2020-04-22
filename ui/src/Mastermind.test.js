@@ -6,6 +6,9 @@ import SecretKey from "./components/SecretKey";
 import RowPanel from "./components/RowPanel";
 import ControlPanel from "./components/ControlPanel";
 import feedback from "./components/mock/feedback";
+import axios from 'axios';
+import {baseUrl} from "./components/api/baseUrl";
+jest.mock('axios');
 
 describe("<Mastermind/>", () => {
     it("should pass", () => {
@@ -82,5 +85,15 @@ describe("<Mastermind/>", () => {
 
             expect(feedbackPeg.prop("className")).toEqual(feedback[i].color);
         }
+    })
+
+    it("should start a new game", () => {
+        const wrapper = mount(<Mastermind/>);
+        const startButton = wrapper.find("#start");
+        startButton.simulate('click');
+
+        expect(axios.get).toHaveBeenCalledWith(
+            `${baseUrl}/start`,
+        );
     })
 })
