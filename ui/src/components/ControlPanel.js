@@ -9,7 +9,12 @@ import {baseUrl} from "./api/baseUrl";
 class ControlPanel extends React.Component {
 
     async start() {
-       await axios.get(`${baseUrl}/start`);
+     const configuration = {
+     headers: {
+         	  'Access-Control-Allow-Origin': '*',
+         	}
+     }
+       await axios.get(`${baseUrl}/start`, configuration);
     }
 
     render() {

@@ -1,6 +1,8 @@
 package com.mastermind.service;
 
+import com.mastermind.model.AttemptRequest;
 import com.mastermind.model.Colors;
+import com.mastermind.model.FeedbackResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,5 +27,9 @@ public class MastermindService {
 
         secretKey = colors.subList(0,4);
         return secretKey;
+    }
+
+    public FeedbackResponse check(AttemptRequest attemptRequest) {
+        return new FeedbackResponse();
     }
 }
