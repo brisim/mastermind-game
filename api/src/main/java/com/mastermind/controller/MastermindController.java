@@ -2,15 +2,19 @@ package com.mastermind.controller;
 
 import com.mastermind.model.AttemptRequest;
 import com.mastermind.model.FeedbackResponse;
+import com.mastermind.model.Peg;
 import com.mastermind.service.MastermindService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class MastermindController {
 
-    MastermindService service;
+    private MastermindService service;
 
     public MastermindController(MastermindService service) {
         this.service = service;
@@ -23,8 +27,11 @@ public class MastermindController {
     }
 
     @PostMapping("/check")
-    public ResponseEntity<?> check(@RequestBody AttemptRequest  attemptRequest) {
-//        service.check(attemptRequest);
+    public ResponseEntity<?> check(@RequestBody AttemptRequest attemptRequest) {
+        List<Peg> attempt = attemptRequest.getAttempt();
+        if(!service.isValidAttempt(attempt))
+            return ResponseEntity.badRequest().build();
+        service.check(attempt);
         return ResponseEntity.ok().build();
     }
 }
