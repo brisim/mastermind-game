@@ -55,6 +55,7 @@ class MastermindControllerTest {
         attempt.add(new Peg("Orange", 4));
 
         attemptRequest = new AttemptRequest(attempt);
+        when(service.isValidAttempt(attempt)).thenReturn(true);
 
         String attemptAsJson = mapper.writeValueAsString(attemptRequest);
 

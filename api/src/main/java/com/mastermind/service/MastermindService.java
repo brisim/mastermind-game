@@ -7,6 +7,7 @@ import com.mastermind.model.Peg;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,12 +22,8 @@ public class MastermindService {
 
     private void populateColors() {
         colors = new ArrayList<>();
-        colors.add(Colors.RED.name());
-        colors.add(Colors.GREEN.name());
-        colors.add(Colors.BLUE.name());
-        colors.add(Colors.ORANGE.name());
-        colors.add(Colors.OPEN_BLUE.name());
-        colors.add(Colors.GREY.name());
+        Arrays.asList(Colors.values()).
+                forEach(color -> colors.add(color.name()));
     }
 
     public void setSecretKey(List<String> secretKey) {
