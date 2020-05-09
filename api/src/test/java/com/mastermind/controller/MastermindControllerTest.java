@@ -2,6 +2,7 @@ package com.mastermind.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mastermind.model.AttemptRequest;
+import com.mastermind.model.Colors;
 import com.mastermind.model.Peg;
 import com.mastermind.service.MastermindService;
 import org.junit.jupiter.api.Test;
@@ -47,17 +48,17 @@ class MastermindControllerTest {
     }
 
     @Test
-    public void shouldReturnFeedbackColors() throws Exception {
+    public void shouldCheckValidAttempt() throws Exception {
         List<Peg> attempt = new ArrayList<>();
-        attempt.add(new Peg("Red", 1));
-        attempt.add(new Peg("Blue", 2));
-        attempt.add(new Peg("Yellow", 3));
-        attempt.add(new Peg("Orange", 4));
+        attempt.add(new Peg(Colors.RED.name(), 0));
+        attempt.add(new Peg(Colors.BLUE.name(), 1));
+        attempt.add(new Peg(Colors.GREEN.name(), 2));
+        attempt.add(new Peg(Colors.ORANGE.name(), 3));
 
         attemptRequest = new AttemptRequest(attempt);
-        when(service.isValidAttempt(attempt)).thenReturn(true);
-
         String attemptAsJson = mapper.writeValueAsString(attemptRequest);
+
+        when(service.isValidAttempt(attempt)).thenReturn(true);
 
         this.mockMvc.perform(post("/check")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -72,11 +73,12 @@ class MastermindControllerTest {
     public void shouldFailForInvalidAttempt() throws Exception {
         List<Peg> invalidAttempt = new ArrayList<>();
         invalidAttempt.add(new Peg("Pink", 5));
-        invalidAttempt.add(new Peg("Blue", 2));
+        invalidAttempt.add(new Peg(Colors.BLUE.name(), 2));
 
         attemptRequest = new AttemptRequest(invalidAttempt);
-        when(service.isValidAttempt(invalidAttempt)).thenReturn(false);
         String attemptAsJson = mapper.writeValueAsString(attemptRequest);
+
+        when(service.isValidAttempt(invalidAttempt)).thenReturn(false);
 
         this.mockMvc.perform(post("/check")
                 .contentType(MediaType.APPLICATION_JSON)
