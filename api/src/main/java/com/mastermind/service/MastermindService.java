@@ -1,8 +1,7 @@
 package com.mastermind.service;
 
-import com.mastermind.model.AttemptRequest;
-import com.mastermind.model.Colors;
-import com.mastermind.model.FeedbackResponse;
+import com.mastermind.model.Color;
+import com.mastermind.model.FeedbackColor;
 import com.mastermind.model.Peg;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,7 @@ public class MastermindService {
 
     private void populateColors() {
         colors = new ArrayList<>();
-        Arrays.asList(Colors.values()).
+        Arrays.asList(Color.values()).
                 forEach(color -> colors.add(color.name()));
     }
 
@@ -37,14 +36,13 @@ public class MastermindService {
         return secretKey;
     }
 
-    public FeedbackResponse check(List<Peg> attempt) {
-        List<Peg> pegs = new ArrayList<>();
-        pegs.add(new Peg("White", 0));
-        pegs.add(new Peg("White", 1));
-        pegs.add(new Peg("White", 2));
-        pegs.add(new Peg("White", 3));
+    public List<Peg> check(List<Peg> attempt) {
+        List<Peg> feedback = new ArrayList<>();
+        feedback.add(new Peg(FeedbackColor.WHITE.name(), 0));
+        feedback.add(new Peg(FeedbackColor.WHITE.name(), 1));
+        feedback.add(new Peg(FeedbackColor.WHITE.name(), 2));
+        feedback.add(new Peg(FeedbackColor.WHITE.name(), 3));
 
-        FeedbackResponse feedback = new FeedbackResponse(pegs);
 //        for (Peg peg: attempt) {
 //            if (secretKey.contains(peg.getColor())) {
 //

@@ -1,6 +1,6 @@
 package com.mastermind.model;
 
-public enum  Colors {
+public enum  Color {
     BLUE("Blue"),
     GREEN("Green"),
     OPEN_BLUE("Open_blue"),
@@ -10,7 +10,7 @@ public enum  Colors {
 
     private final String color;
 
-    Colors(String color) {
+    Color(String color) {
         this.color = color;
     }
 

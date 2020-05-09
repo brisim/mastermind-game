@@ -2,11 +2,10 @@ package com.mastermind.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mastermind.model.AttemptRequest;
-import com.mastermind.model.Colors;
+import com.mastermind.model.Color;
 import com.mastermind.model.Peg;
 import com.mastermind.service.MastermindService;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -50,10 +49,10 @@ class MastermindControllerTest {
     @Test
     public void shouldCheckValidAttempt() throws Exception {
         List<Peg> attempt = new ArrayList<>();
-        attempt.add(new Peg(Colors.RED.name(), 0));
-        attempt.add(new Peg(Colors.BLUE.name(), 1));
-        attempt.add(new Peg(Colors.GREEN.name(), 2));
-        attempt.add(new Peg(Colors.ORANGE.name(), 3));
+        attempt.add(new Peg(Color.RED.name(), 0));
+        attempt.add(new Peg(Color.BLUE.name(), 1));
+        attempt.add(new Peg(Color.GREEN.name(), 2));
+        attempt.add(new Peg(Color.ORANGE.name(), 3));
 
         attemptRequest = new AttemptRequest(attempt);
         String attemptAsJson = mapper.writeValueAsString(attemptRequest);
@@ -73,7 +72,7 @@ class MastermindControllerTest {
     public void shouldFailForInvalidAttempt() throws Exception {
         List<Peg> invalidAttempt = new ArrayList<>();
         invalidAttempt.add(new Peg("Pink", 5));
-        invalidAttempt.add(new Peg(Colors.BLUE.name(), 2));
+        invalidAttempt.add(new Peg(Color.BLUE.name(), 2));
 
         attemptRequest = new AttemptRequest(invalidAttempt);
         String attemptAsJson = mapper.writeValueAsString(attemptRequest);

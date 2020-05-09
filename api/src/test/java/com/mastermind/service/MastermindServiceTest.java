@@ -1,5 +1,7 @@
 package com.mastermind.service;
 
+import com.mastermind.model.Color;
+import com.mastermind.model.FeedbackColor;
 import com.mastermind.model.FeedbackResponse;
 import com.mastermind.model.Peg;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,10 +21,10 @@ class MastermindServiceTest {
     void setUp(){
         service = new MastermindService();
         secretKey = new ArrayList<>();
-        secretKey.add("Yellow");
-        secretKey.add("Red");
-        secretKey.add("Blue");
-        secretKey.add("Green");
+        secretKey.add(Color.ORANGE.name());
+        secretKey.add(Color.RED.name());
+        secretKey.add(Color.BLUE.name());
+        secretKey.add(Color.GREEN.name());
         service.setSecretKey(secretKey);
     }
 
@@ -40,8 +42,8 @@ class MastermindServiceTest {
     @Test
     void shouldFailForAttemptWithoutFourPegs() {
         List<Peg> invalidAttempt = new ArrayList<>();
-        invalidAttempt.add(new Peg("Orange", 1));
-        invalidAttempt.add(new Peg("Blue", 2));
+        invalidAttempt.add(new Peg(Color.ORANGE.name(), 1));
+        invalidAttempt.add(new Peg(Color.BLUE.name(), 2));
 
         assertThat(service.isValidAttempt(invalidAttempt)).isEqualTo(false);
     }
@@ -49,21 +51,21 @@ class MastermindServiceTest {
     @Test
     void shouldFailForAttemptWithInvalidPosition() {
         List<Peg> invalidAttempt = new ArrayList<>();
-        invalidAttempt.add(new Peg("Orange", 5));
-        invalidAttempt.add(new Peg("Blue", 6));
-        invalidAttempt.add(new Peg("Blue", 7));
-        invalidAttempt.add(new Peg("Blue", 8));
+        invalidAttempt.add(new Peg(Color.ORANGE.name(), 5));
+        invalidAttempt.add(new Peg(Color.BLUE.name(), 6));
+        invalidAttempt.add(new Peg(Color.BLUE.name(), 7));
+        invalidAttempt.add(new Peg(Color.BLUE.name(), 8));
 
         assertThat(service.isValidAttempt(invalidAttempt)).isEqualTo(false);
     }
 
     @Test
-    void shouldFailForAttemptWithInvalidColor() {
+    void shouldFailForAttemptWithInvalidColorName() {
         List<Peg> invalidAttempt = new ArrayList<>();
         invalidAttempt.add(new Peg("Yellow", 0));
-        invalidAttempt.add(new Peg("Blue", 1));
-        invalidAttempt.add(new Peg("Blue", 2));
-        invalidAttempt.add(new Peg("Blue", 3));
+        invalidAttempt.add(new Peg(Color.BLUE.name(), 1));
+        invalidAttempt.add(new Peg(Color.BLUE.name(), 2));
+        invalidAttempt.add(new Peg(Color.BLUE.name(), 3));
 
         assertThat(service.isValidAttempt(invalidAttempt)).isEqualTo(false);
     }
@@ -88,20 +90,19 @@ class MastermindServiceTest {
     }
 
     @Test
-    void shouldReturn4WhitePegs() {
+    void shouldReturn4WhitePegsForMatchingPositioNoColor() {
         List<Peg> attempt = new ArrayList<>();
-        attempt.add(new Peg("Red", 0));
-        attempt.add(new Peg("Yellow", 1));
-        attempt.add(new Peg("Green", 2));
-        attempt.add(new Peg("Blue", 3));
+        attempt.add(new Peg(Color.RED.name(), 0));
+        attempt.add(new Peg(Color.ORANGE.name(), 1));
+        attempt.add(new Peg(Color.GREEN.name(), 2));
+        attempt.add(new Peg(Color.BLUE.name(), 3));
 
-        List<Peg> feedback = new ArrayList<>();
-        feedback.add(new Peg("White", 0));
-        feedback.add(new Peg("White", 1));
-        feedback.add(new Peg("White", 2));
-        feedback.add(new Peg("White", 3));
+        List<Peg> expectedFeedback = new ArrayList<>();
+        expectedFeedback.add(new Peg(FeedbackColor.WHITE.name(), 0));
+        expectedFeedback.add(new Peg(FeedbackColor.WHITE.name(), 1));
+        expectedFeedback.add(new Peg(FeedbackColor.WHITE.name(), 2));
+        expectedFeedback.add(new Peg(FeedbackColor.WHITE.name(), 3));
 
-        FeedbackResponse expectedFeedback = new FeedbackResponse(feedback);
 
         assertThat(service.check(attempt)).isEqualTo(expectedFeedback);
     }
