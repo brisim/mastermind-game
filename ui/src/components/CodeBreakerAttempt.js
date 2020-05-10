@@ -8,7 +8,7 @@ export default class CodeBreakerAttempt extends Component {
         <div className="row border border-dark">
             <div className="col-12">
                 {pegs.map( pegNr => {
-                    return <Peg key={pegNr} dataKey={"pegAttempt_" + pegNr + "_" + this.props.dataKey} className = {this.props.attempt[pegNr-1].color}/>
+                    return <Peg key={pegNr} dataKey={"pegAttempt_" + pegNr + "_" + this.props.dataKey} className={this.props.attempt[pegNr-1].className}/>
                 })}
             </div>
         </div>

@@ -1,26 +1,32 @@
 [
   {
     "id": 1,
-    "className": "btn btn-primary btn-circle btn-xl"
+    "className": "btn btn-primary btn-circle btn-xl",
+    "color": "BLUE"
   },
   {
     "id": 2,
-    "className": "btn btn-success btn-circle btn-xl"
+    "className": "btn btn-success btn-circle btn-xl",
+    "color": "GREEN"
   },
   {
     "id": 3,
-    "className": "btn btn-info btn-circle btn-xl"
+    "className": "btn btn-info btn-circle btn-xl",
+    "color": "OPEN_BLUE"
   },
   {
     "id": 4,
-    "className": "btn btn-warning btn-circle btn-xl"
+    "className": "btn btn-warning btn-circle btn-xl",
+    "color": "ORANGE"
   },
   {
     "id": 5,
-    "className": "btn btn-danger btn-circle btn-xl"
+    "className": "btn btn-danger btn-circle btn-xl",
+    "color": "RED"
   },
   {
     "id": 6,
-    "className": "btn btn-secondary btn-circle btn-xl"
+    "className": "btn btn-secondary btn-circle btn-xl",
+    "color": "GREY"
   }
 ]
