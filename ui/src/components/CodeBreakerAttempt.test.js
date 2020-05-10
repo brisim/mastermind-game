@@ -24,7 +24,7 @@ describe("<CodeBreakerAttempt />", () => {
         const pegs = wrapper.find(Peg);
         let index = 0;
         pegs.forEach(peg => {
-            expect(peg.prop('className')).toEqual(attempt[index].color);
+            expect(peg.prop('className')).toEqual(attempt[index].className);
             index++;
         })
     })
