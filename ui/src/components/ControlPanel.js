@@ -5,16 +5,12 @@ import colors from './data/colors';
 import Peg from "./Peg";
 import axios from 'axios';
 import {baseUrl} from "./api/baseUrl";
+import {axiosConfiguration} from "./api/axiosConfiguration";
 
 class ControlPanel extends React.Component {
 
     async start() {
-     const configuration = {
-     headers: {
-         	  'Access-Control-Allow-Origin': '*',
-         	}
-     }
-       await axios.get(`${baseUrl}/start`, configuration);
+       await axios.get(`${baseUrl}/start`, axiosConfiguration);
     }
 
     render() {
@@ -22,7 +18,7 @@ class ControlPanel extends React.Component {
             <div className="row border border-dark">
                 <div className="col-sm-1"></div>
                 <div className="col-sm-5">
-                   {colors.map(data =><Peg key={data.id} dataKey={"coloredPeg" + data.id} color={data.color}  className={data.className} changeColor={this.props.changeColor}/>
+                   {colors.map(data => <Peg key={data.id} dataKey={"coloredPeg" + data.id} color={data.color}  className={data.className} changeColor={this.props.changeColor}/>
                    )}
                </div>
                 <div className="col-sm-2"></div>
