@@ -2,7 +2,8 @@ package com.mastermind.model;
 
 public enum  FeedbackColor {
     WHITE("White"),
-    RED("Red");
+    RED("Red"),
+    BLACK("Black");
 
     private final String color;
 

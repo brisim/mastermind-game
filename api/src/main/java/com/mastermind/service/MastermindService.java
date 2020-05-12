@@ -38,17 +38,22 @@ public class MastermindService {
 
     public List<Peg> check(List<Peg> attempt) {
         List<Peg> feedback = new ArrayList<>();
-        feedback.add(new Peg(FeedbackColor.WHITE.name(), 0));
-        feedback.add(new Peg(FeedbackColor.WHITE.name(), 1));
-        feedback.add(new Peg(FeedbackColor.WHITE.name(), 2));
-        feedback.add(new Peg(FeedbackColor.WHITE.name(), 3));
 
-//        for (Peg peg: attempt) {
-//            if (secretKey.contains(peg.getColor())) {
-//
-//            }
-//        }
-
+        int index = 0;
+        for (Peg peg: attempt) {
+            if (secretKey.contains(peg.getColor())) {
+                if (secretKey.indexOf(peg.getColor()) == index) {
+                    feedback.add(new Peg(FeedbackColor.RED.name(), index));
+                }
+                else {
+                    feedback.add(new Peg(FeedbackColor.WHITE.name(), index));
+                }
+            }
+            else {
+                feedback.add(new Peg(FeedbackColor.BLACK.name(), index));
+            }
+            index++;
+        }
         return feedback;
     }
 

@@ -70,27 +70,25 @@ class MastermindServiceTest {
         assertThat(service.isValidAttempt(invalidAttempt)).isEqualTo(false);
     }
 
-//    @Test
+    @Test
     void shouldReturn1R3WForOneCPMatchAnd3PMatch() {
         List<Peg> attempt = new ArrayList<>();
-        attempt.add(new Peg("Yellow", 0));
-        attempt.add(new Peg("Red", 1));
-        attempt.add(new Peg("Blue", 2));
-        attempt.add(new Peg("Green", 3));
+        attempt.add(new Peg(Color.ORANGE.name(), 0));
+        attempt.add(new Peg(Color.BLUE.name(), 1));
+        attempt.add(new Peg(Color.GREEN.name(), 2));
+        attempt.add(new Peg(Color.RED.name(), 3));
 
-        List<Peg> feedback = new ArrayList<>();
-        feedback.add(new Peg("Red", 0));
-        feedback.add(new Peg("White", 1));
-        feedback.add(new Peg("White", 2));
-        feedback.add(new Peg("White", 3));
+        List<Peg> expectedFeedback = new ArrayList<>();
+        expectedFeedback.add(new Peg(FeedbackColor.RED.name(), 0));
+        expectedFeedback.add(new Peg(FeedbackColor.WHITE.name(), 1));
+        expectedFeedback.add(new Peg(FeedbackColor.WHITE.name(), 2));
+        expectedFeedback.add(new Peg(FeedbackColor.WHITE.name(), 3));
 
-        FeedbackResponse expectedResponse = new FeedbackResponse(feedback);
-
-//        assertThat(service.check(attempt)).isEqualTo(expectedResponse);
+        assertThat(service.check(attempt)).isEqualTo(expectedFeedback);
     }
 
     @Test
-    void shouldReturn4WhitePegsForMatchingPositioNoColor() {
+    void shouldReturn4WhitePegsForMatchingPositionNoColor() {
         List<Peg> attempt = new ArrayList<>();
         attempt.add(new Peg(Color.RED.name(), 0));
         attempt.add(new Peg(Color.ORANGE.name(), 1));
@@ -103,6 +101,56 @@ class MastermindServiceTest {
         expectedFeedback.add(new Peg(FeedbackColor.WHITE.name(), 2));
         expectedFeedback.add(new Peg(FeedbackColor.WHITE.name(), 3));
 
+        assertThat(service.check(attempt)).isEqualTo(expectedFeedback);
+    }
+
+    @Test
+    void shouldReturn4RedPegsForMatchingPositionAndColor() {
+        List<Peg> attempt = new ArrayList<>();
+        attempt.add(new Peg(Color.ORANGE.name(), 0));
+        attempt.add(new Peg(Color.RED.name(), 1));
+        attempt.add(new Peg(Color.BLUE.name(), 2));
+        attempt.add(new Peg(Color.GREEN.name(), 3));
+
+        List<Peg> expectedFeedback = new ArrayList<>();
+        expectedFeedback.add(new Peg(FeedbackColor.RED.name(), 0));
+        expectedFeedback.add(new Peg(FeedbackColor.RED.name(), 1));
+        expectedFeedback.add(new Peg(FeedbackColor.RED.name(), 2));
+        expectedFeedback.add(new Peg(FeedbackColor.RED.name(), 3));
+
+        assertThat(service.check(attempt)).isEqualTo(expectedFeedback);
+    }
+
+    @Test
+    void shouldReturn4BlackPegsForNoMatchingColor() {
+        List<Peg> attempt = new ArrayList<>();
+        attempt.add(new Peg(Color.GREY.name(), 0));
+        attempt.add(new Peg(Color.GREY.name(), 1));
+        attempt.add(new Peg(Color.GREY.name(), 2));
+        attempt.add(new Peg(Color.OPEN_BLUE.name(), 3));
+
+        List<Peg> expectedFeedback = new ArrayList<>();
+        expectedFeedback.add(new Peg(FeedbackColor.BLACK.name(), 0));
+        expectedFeedback.add(new Peg(FeedbackColor.BLACK.name(), 1));
+        expectedFeedback.add(new Peg(FeedbackColor.BLACK.name(), 2));
+        expectedFeedback.add(new Peg(FeedbackColor.BLACK.name(), 3));
+
+        assertThat(service.check(attempt)).isEqualTo(expectedFeedback);
+    }
+
+    @Test
+    void shouldReturn2Black1White1RedPegs() {
+        List<Peg> attempt = new ArrayList<>();
+        attempt.add(new Peg(Color.BLUE.name(), 0));
+        attempt.add(new Peg(Color.RED.name(), 1));
+        attempt.add(new Peg(Color.GREY.name(), 2));
+        attempt.add(new Peg(Color.OPEN_BLUE.name(), 3));
+
+        List<Peg> expectedFeedback = new ArrayList<>();
+        expectedFeedback.add(new Peg(FeedbackColor.WHITE.name(), 0));
+        expectedFeedback.add(new Peg(FeedbackColor.RED.name(), 1));
+        expectedFeedback.add(new Peg(FeedbackColor.BLACK.name(), 2));
+        expectedFeedback.add(new Peg(FeedbackColor.BLACK.name(), 3));
 
         assertThat(service.check(attempt)).isEqualTo(expectedFeedback);
     }
