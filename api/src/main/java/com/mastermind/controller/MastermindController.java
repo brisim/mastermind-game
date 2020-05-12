@@ -29,9 +29,11 @@ public class MastermindController {
     @PostMapping("/check")
     public ResponseEntity<?> check(@RequestBody AttemptRequest attemptRequest) {
         List<Peg> attempt = attemptRequest.getAttempt();
-        if(!service.isValidAttempt(attempt))
+        if(!service.isValidAttempt(attempt)) {
             return ResponseEntity.badRequest().build();
-        service.check(attempt);
-        return ResponseEntity.ok().build();
+        }
+        List<Peg> feedback = service.check(attempt);
+        FeedbackResponse feedbackResponse = new FeedbackResponse(feedback);
+        return ResponseEntity.ok(feedbackResponse);
     }
 }

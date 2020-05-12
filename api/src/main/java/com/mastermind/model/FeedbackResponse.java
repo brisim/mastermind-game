@@ -10,6 +10,10 @@ public class FeedbackResponse {
         this.feedback = feedback;
     }
 
+    public List<Peg> getFeedback() {
+        return feedback;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
