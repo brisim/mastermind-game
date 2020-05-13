@@ -8,7 +8,7 @@ export default class SecretKey extends Component {
         <div className="row border border-dark">
             <div className="col-12">
                 {pegs.map( pegNr => {
-                    return <Peg key={pegNr} className={this.props.className}/>
+                    return <Peg key={pegNr} className={this.props.config[pegNr-1]}/>
                 })}
             </div>
         </div>
