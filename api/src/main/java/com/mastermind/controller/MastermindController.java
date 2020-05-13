@@ -4,7 +4,6 @@ import com.mastermind.model.AttemptRequest;
 import com.mastermind.model.FeedbackResponse;
 import com.mastermind.model.Peg;
 import com.mastermind.service.MastermindService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

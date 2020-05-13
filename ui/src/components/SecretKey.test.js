@@ -17,7 +17,7 @@ describe("<SecretKey />", () => {
     });
 
     it("should pass className to each Peg", () => {
-        const secretKeyClassName = "btn btn-dark btn-circle btn-xl border border-dark";
+        const secretKeyClassName = "btn btn-dark btn-circle btn-xl";
         const wrapper = shallow(<SecretKey className={secretKeyClassName}/>);
         const pegs = wrapper.find(Peg);
 

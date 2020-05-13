@@ -5,7 +5,7 @@ import Rules from "./components/Rules";
 import SecretKey from "./components/SecretKey";
 import RowPanel from "./components/RowPanel";
 import ControlPanel from "./components/ControlPanel";
-import feedbackColors from "./components/data/feedbackColors";
+import config from "./components/data/config";
 import axios from 'axios';
 import {baseUrl} from "./components/api/baseUrl";
 jest.mock('axios');
@@ -100,7 +100,7 @@ describe("<Mastermind/>", () => {
         for (let i = 0; i<4; i++) {
             feedbackPeg = wrapper.find("#feedbackPeg_" + i + "_10");
 
-            expect(feedbackPeg.prop("className")).toEqual(feedbackColors.get("RED"));
+            expect(feedbackPeg.prop("className")).toEqual(config.feedbackColors.get("RED"));
         }
     })
 

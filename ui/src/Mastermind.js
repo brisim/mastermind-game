@@ -7,38 +7,43 @@ import Rules from "./components/Rules";
 import axios from 'axios';
 import {baseUrl} from "./components/api/baseUrl";
 import {axiosConfiguration} from "./components/api/axiosConfiguration";
-import feedbackColors from "./components/data/feedbackColors";
-import attemptColors from "./components/data/attemptColors";
+import config from "./components/data/config";
 
 class Mastermind extends React.Component {
-    defaultClassName = attemptColors.get("WHITE");
-    feedbackDefaultClassName = feedbackColors.get("BLACK");
-
     attempt = [];
     rows = [];
     feedback = [];
+    secretKey = [];
     constructor(props) {
         super(props);
         this.initAttempt();
         this.initFeedback();
+        this.initSecretKey();
         this.initRows();
 
         this.state = {
             activeRow: 10,
             activePeg: 1,
-            rows: [...this.rows]
+            rows: [...this.rows],
+            secretKey: this.secretKey
         }
     }
 
     initAttempt = () => {
         for(let i = 0; i<4; i++) {
-            this.attempt.push({position: i, color: "WHITE", className:this.defaultClassName});
+            this.attempt.push({position: i, color: "WHITE", className: config.attemptDefaultClassName});
         }
     }
 
     initFeedback = () => {
         for(let i = 0; i<4; i++) {
-            this.feedback.push({position: i, className: this.feedbackDefaultClassName});
+            this.feedback.push({position: i, className: config.feedbackDefaultClassName});
+        }
+    }
+
+    initSecretKey = () => {
+        for(let i = 0; i<4; i++) {
+            this.secretKey.push(config.secretKeyDefaultClassName);
         }
     }
 
@@ -49,26 +54,28 @@ class Mastermind extends React.Component {
     }
 
     changeColor = (event) => {
-        const className = event.target.className;
-        const color = event.target.getAttribute("color")
+        if(this.attemptLeft) {
+            const className = event.target.className;
+            const color = event.target.getAttribute("color")
 
-        const activeAttempt = this.state.rows[this.state.activeRow-1].attempt;
+            const activeAttempt = this.state.rows[this.state.activeRow-1].attempt;
 
-        let activePegCopy = {...activeAttempt[this.state.activePeg -1]};
-        activePegCopy.className = className;
-        activePegCopy.color = color;
+            let activePegCopy = {...activeAttempt[this.state.activePeg -1]};
+            activePegCopy.className = className;
+            activePegCopy.color = color;
 
-        activeAttempt[this.state.activePeg -1] = activePegCopy;
-        let nextPeg = this.state.activePeg % 4 + 1;
-        this.setState( { activePeg: nextPeg });
+            activeAttempt[this.state.activePeg -1] = activePegCopy;
+            let nextPeg = this.state.activePeg % 4 + 1;
+            this.setState( { activePeg: nextPeg });
+        }
     }
 
-    gameOver = () => {
-        return this.state.activeRow === 0;
+    attemptLeft = () => {
+        return this.state.activeRow !== 0;
     }
 
     checkAttempt = async (event) => {
-        if(!this.gameOver()) {
+        if(this.attemptLeft()) {
         let currentAttempt =  [...this.state.rows[this.state.activeRow-1].attempt];
         let attemptRequest = [];
 
@@ -78,19 +85,19 @@ class Mastermind extends React.Component {
          }
             const feedbackResponse = await axios.post(`${baseUrl}/check`, {attempt: attemptRequest}, axiosConfiguration);
             const result = feedbackResponse.data;
-            const feedbackFromApi = result.feedback
+            const feedbackFromApi = result.feedback;
 
             const activeFeedback = this.state.rows[this.state.activeRow-1].feedback;
 
             for(let i = 0; i<4; i++) {
                 let feedbackPegCopy = {...activeFeedback[i]};
-                feedbackPegCopy.className = feedbackColors.get(feedbackFromApi[i].color);
+                feedbackPegCopy.className = config.feedbackColors.get(feedbackFromApi[i].color);
                 activeFeedback[i] = feedbackPegCopy;
             }
 
-            let nextAttempt = this.state.activeRow - 1;
-            let activePeg = 1;
-            this.setState({activeRow: nextAttempt, activePeg: activePeg });
+                let nextAttempt = this.state.activeRow - 1;
+                let activePeg = 1;
+                this.setState({activeRow: nextAttempt, activePeg: activePeg });
         }
     }
 
@@ -102,7 +109,6 @@ class Mastermind extends React.Component {
     }
 
     render() {
-        let secretKeyClassName = "btn btn-dark btn-circle btn-xl border border-dark";
         return (
             <div className="container">
                 <div className="row">
@@ -110,7 +116,7 @@ class Mastermind extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-sm-6">
-                        <SecretKey className={secretKeyClassName} />
+                        <SecretKey config={this.state.secretKey} />
                         <div className="row">
                             <div className="col border border-dark text-danger text-center"> <b> Secret Key </b> </div>
                         </div>

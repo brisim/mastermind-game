@@ -1,7 +1,6 @@
 package com.mastermind.service;
 
 import com.mastermind.model.Color;
-import com.mastermind.model.FeedbackColor;
 import com.mastermind.model.Peg;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +20,7 @@ public class MastermindService {
 
     private void populateColors() {
         colors = new ArrayList<>();
-        Arrays.asList(Color.values()).
+        Arrays.asList(Color.AttemptColor.values()).
                 forEach(color -> colors.add(color.name()));
     }
 
@@ -43,14 +42,14 @@ public class MastermindService {
         for (Peg peg: attempt) {
             if (secretKey.contains(peg.getColor())) {
                 if (secretKey.indexOf(peg.getColor()) == index) {
-                    feedback.add(new Peg(FeedbackColor.RED.name(), index));
+                    feedback.add(new Peg(Color.FeedbackColor.RED.name(), index));
                 }
                 else {
-                    feedback.add(new Peg(FeedbackColor.WHITE.name(), index));
+                    feedback.add(new Peg(Color.FeedbackColor.WHITE.name(), index));
                 }
             }
             else {
-                feedback.add(new Peg(FeedbackColor.BLACK.name(), index));
+                feedback.add(new Peg(Color.FeedbackColor.BLACK.name(), index));
             }
             index++;
         }

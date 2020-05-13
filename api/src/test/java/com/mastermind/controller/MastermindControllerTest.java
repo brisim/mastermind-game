@@ -49,10 +49,10 @@ class MastermindControllerTest {
     @Test
     public void shouldCheckValidAttempt() throws Exception {
         List<Peg> attempt = new ArrayList<>();
-        attempt.add(new Peg(Color.RED.name(), 0));
-        attempt.add(new Peg(Color.BLUE.name(), 1));
-        attempt.add(new Peg(Color.GREEN.name(), 2));
-        attempt.add(new Peg(Color.ORANGE.name(), 3));
+        attempt.add(new Peg(Color.AttemptColor.RED.name(), 0));
+        attempt.add(new Peg(Color.AttemptColor.BLUE.name(), 1));
+        attempt.add(new Peg(Color.AttemptColor.GREEN.name(), 2));
+        attempt.add(new Peg(Color.AttemptColor.ORANGE.name(), 3));
 
         attemptRequest = new AttemptRequest(attempt);
         String attemptAsJson = mapper.writeValueAsString(attemptRequest);
@@ -72,7 +72,7 @@ class MastermindControllerTest {
     public void shouldFailForInvalidAttempt() throws Exception {
         List<Peg> invalidAttempt = new ArrayList<>();
         invalidAttempt.add(new Peg("Pink", 5));
-        invalidAttempt.add(new Peg(Color.BLUE.name(), 2));
+        invalidAttempt.add(new Peg(Color.AttemptColor.BLUE.name(), 2));
 
         attemptRequest = new AttemptRequest(invalidAttempt);
         String attemptAsJson = mapper.writeValueAsString(attemptRequest);
