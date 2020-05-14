@@ -68,6 +68,7 @@ public class MastermindService {
             index++;
         }
         attemptNo++;
+        Collections.shuffle(feedback);
         return feedback;
     }
 
