@@ -25,7 +25,8 @@ class Mastermind extends React.Component {
             activeRow: 10,
             activePeg: 1,
             rows: [...this.rows],
-            secretKey: this.secretKey
+            secretKey: this.secretKey,
+            isGameStarted: false
         }
     }
 
@@ -98,9 +99,10 @@ class Mastermind extends React.Component {
                 let nextAttempt = this.state.activeRow - 1;
                 let activePeg = 1;
                 this.setState({activeRow: nextAttempt, activePeg: activePeg });
-        }
-        else {
-           this.revealSecretKey();
+                if(nextAttempt == 0) {
+                    this.setState({isGameStarted: false})
+                    this.revealSecretKey();
+                }
         }
     }
 
@@ -137,7 +139,7 @@ class Mastermind extends React.Component {
                         <div className="row">
                             <div className="col border border-dark text-danger text-center"> <b> Control Panel </b> </div>
                         </div>
-                        <ControlPanel changeColor = {this.changeColor} checkAttempt = {this.checkAttempt} reset = {this.reset}/>
+                        <ControlPanel isGameStarted = {this.state.isGameStarted} changeColor = {this.changeColor} checkAttempt = {this.checkAttempt} reset = {this.reset}/>
                     </div>
                 </div>
             </div>

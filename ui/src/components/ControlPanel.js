@@ -9,8 +9,15 @@ import {axiosConfiguration} from "./api/axiosConfiguration";
 
 class ControlPanel extends React.Component {
 
-    async start() {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isGameStarted: props.isGameStarted
+        };
+    }
+     start = async () => {
        await axios.get(`${baseUrl}/start`, axiosConfiguration);
+       this.setState({isGameStarted: true});
     }
 
     render() {
@@ -31,10 +38,10 @@ class ControlPanel extends React.Component {
                 <div className="col-sm-2"></div>
                    <div className="col-sm-3">
                         <div className="row">
-                            <button type="button" id="check" className="btn btn-success" onClick={this.props.checkAttempt}>Check</button>
+                            <button type="button" id="check" disabled={!this.state.isGameStarted} className="btn btn-success" onClick={this.props.checkAttempt}>Check</button>
                         </div>
                          <div className="row">
-                            <button type="button" id="reset" className="btn btn-danger" onClick={this.props.reset}>Reset</button>
+                            <button type="button" id="reset" disabled={!this.state.isGameStarted} className="btn btn-danger" onClick={this.props.reset}>Reset</button>
                          </div>
                        <div className="row">
                            <button type="button" id="start" className="btn btn-info" onClick={this.start}>Start</button>
