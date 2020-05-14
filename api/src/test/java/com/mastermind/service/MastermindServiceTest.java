@@ -152,4 +152,16 @@ class MastermindServiceTest {
 
         assertThat(service.check(attempt)).isEqualTo(expectedFeedback);
     }
+
+    @Test
+    void isEndOfGameShouldReturnTrueAfter10Attempts() {
+        service.setAttemptNo(11);
+        assertThat(service.isEndOfGame()).isEqualTo(true);
+    }
+
+    @Test
+    void isEndOfGameShouldReturnTrueForAWin() {
+//        service.
+//        assertThat(service.isEndOfGame()).isEqualTo(true);
+    }
 }

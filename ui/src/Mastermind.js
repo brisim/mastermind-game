@@ -71,7 +71,7 @@ class Mastermind extends React.Component {
     }
 
     attemptLeft = () => {
-        return this.state.activeRow !== 0;
+        return this.state.activeRow !=0;
     }
 
     checkAttempt = async (event) => {
@@ -99,6 +99,19 @@ class Mastermind extends React.Component {
                 let activePeg = 1;
                 this.setState({activeRow: nextAttempt, activePeg: activePeg });
         }
+        else {
+           this.revealSecretKey();
+        }
+    }
+
+    revealSecretKey = async () => {
+        const response = await axios.get(`${baseUrl}/secret-key`, axiosConfiguration);
+        const secretKey = [];
+        const secretKeyColor =  response.data;
+        for(let i = 0; i<4; i++) {
+            secretKey.push(config.attemptColors.get(secretKeyColor[i]));
+        }
+        this.setState({secretKey: secretKey});
     }
 
     reset = () => {

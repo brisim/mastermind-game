@@ -13,6 +13,8 @@ import java.util.List;
 public class MastermindService {
     private List<String> secretKey;
     private List<String> colors;
+    private int attemptNo = 0;
+    private final int ALLOWED_ATTEMPTS_NO = 10;
 
     public MastermindService() {
         populateColors();
@@ -26,6 +28,18 @@ public class MastermindService {
 
     public void setSecretKey(List<String> secretKey) {
         this.secretKey = secretKey;
+    }
+
+    public List<String> getSecretKey() {
+        return secretKey;
+    }
+
+    public int getAttemptNo() {
+        return attemptNo;
+    }
+
+    public void setAttemptNo(int attemptNo) {
+        this.attemptNo = attemptNo;
     }
 
     public List<String> start() {
@@ -53,6 +67,7 @@ public class MastermindService {
             }
             index++;
         }
+        attemptNo++;
         return feedback;
     }
 
@@ -76,5 +91,16 @@ public class MastermindService {
 
     private boolean isValidPosition(int position) {
         return (position ==0 || position ==1 || position ==2|| position ==3);
+    }
+
+    public boolean isGameOver() {
+        return false;
+    }
+
+    public boolean isEndOfGame() {
+        if (getAttemptNo() > ALLOWED_ATTEMPTS_NO) {
+            return true;
+        }
+        return false;
     }
 }

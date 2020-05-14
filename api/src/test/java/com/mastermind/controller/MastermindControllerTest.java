@@ -87,4 +87,10 @@ class MastermindControllerTest {
 
         verify(service, never()).check(invalidAttempt);
     }
+
+    @Test
+    void shouldRevealSecretKey() throws Exception {
+        this.mockMvc.perform(get("/secret-key")).andExpect(status().isOk());
+        verify(service, times(1)).getSecretKey();
+    }
 }

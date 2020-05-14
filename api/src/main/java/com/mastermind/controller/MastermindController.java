@@ -35,4 +35,10 @@ public class MastermindController {
         FeedbackResponse feedbackResponse = new FeedbackResponse(feedback);
         return ResponseEntity.ok(feedbackResponse);
     }
+
+    @GetMapping("/secret-key")
+    public ResponseEntity<?> secretKey() {
+        List<String> secretKey =  service.getSecretKey();
+        return ResponseEntity.ok(secretKey);
+    }
 }
