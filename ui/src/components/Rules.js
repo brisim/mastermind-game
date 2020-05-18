@@ -19,12 +19,12 @@ const rules = (props) => {
                     code.
                 </li>
                 <li>
-                    The Codemaker responds by placing 0, 1, 2, 3, and 4 Key Pegs in the Key Peg holes
+                    The Codemaker responds by placing 4 Key Pegs in the Key Peg holes
                     on the 1st row as follows:
-                    (b) A black Key Peg to indicate a Code Peg of the right color and in the right position
+                    (b) A red Key Peg to indicate a Code Peg of the right color and in the right position
                     (without indication of which Code Peg it corresponds to).
                     (b) A white Key Peg to indicate a Code Peg of the right color but in the wrong position.
-                    (b) No Key Peg to indicate a wrong color that does not appear in the secret code.
+                    (b) A black Key Peg to indicate a wrong color that does not appear in the secret code.
                 </li>
             </ul>
         </div>

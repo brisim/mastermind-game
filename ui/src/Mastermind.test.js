@@ -68,6 +68,11 @@ describe("<Mastermind/>", () => {
         const wrapper = mount(<Mastermind/>);
         const checkButton = wrapper.find("#check");
 
+        const startButton = wrapper.find("#start");
+        startButton.simulate('click');
+        await flushPromises();
+        wrapper.update();
+
         axios.post.mockResolvedValue({"data": {"feedback": [{"position":0, color:"RED"}, {"position":1, color:"RED"},
          {"position":2, color:"RED"}, {"position":3, color:"RED"}]}});
 
@@ -89,6 +94,11 @@ describe("<Mastermind/>", () => {
         const wrapper = mount(<Mastermind/>);
         const checkButton = wrapper.find("#check");
 
+        const startButton = wrapper.find("#start");
+        startButton.simulate('click');
+        await flushPromises();
+        wrapper.update();
+
        axios.post.mockResolvedValue({"data": {"feedback": [{"position":0, color:"RED"}, {"position":1, color:"RED"},
          {"position":2, color:"RED"}, {"position":3, color:"RED"}]}});
 
@@ -99,7 +109,6 @@ describe("<Mastermind/>", () => {
         let feedbackPeg;
         for (let i = 0; i<4; i++) {
             feedbackPeg = wrapper.find("#feedbackPeg_" + i + "_10");
-
             expect(feedbackPeg.prop("className")).toEqual(config.feedbackColors.get("RED"));
         }
     })
