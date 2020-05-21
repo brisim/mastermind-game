@@ -4,14 +4,20 @@ import java.util.List;
 import java.util.Objects;
 
 public class FeedbackResponse {
-    List<Peg> feedback;
+    private List<Peg> feedback;
+    private boolean isWinner;
 
-    public FeedbackResponse(List<Peg> feedback) {
+    public FeedbackResponse(List<Peg> feedback, boolean isWinner) {
         this.feedback = feedback;
+        this.isWinner = isWinner;
     }
 
     public List<Peg> getFeedback() {
         return feedback;
+    }
+
+    public boolean isWinner() {
+        return isWinner;
     }
 
     @Override

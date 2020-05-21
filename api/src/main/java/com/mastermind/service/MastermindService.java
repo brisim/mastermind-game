@@ -15,6 +15,7 @@ public class MastermindService {
     private List<String> colors;
     private int attemptNo = 0;
     private final int ALLOWED_ATTEMPTS_NO = 10;
+    private boolean isWinner = false;
 
     public MastermindService() {
         populateColors();
@@ -42,6 +43,10 @@ public class MastermindService {
         this.attemptNo = attemptNo;
     }
 
+    public boolean isWinner() {
+        return isWinner;
+    }
+
     public List<String> start() {
         secretKey = new ArrayList<>();
         Collections.shuffle(colors);
@@ -53,9 +58,11 @@ public class MastermindService {
         List<Peg> feedback = new ArrayList<>();
 
         int index = 0;
+        int numberOfRedPegs = 0;
         for (Peg peg: attempt) {
             if (secretKey.contains(peg.getColor())) {
                 if (secretKey.indexOf(peg.getColor()) == index) {
+                    numberOfRedPegs++;
                     feedback.add(new Peg(Color.FeedbackColor.RED.name(), index));
                 }
                 else {
@@ -67,10 +74,16 @@ public class MastermindService {
             }
             index++;
         }
+        if(numberOfRedPegs == 4) {
+            this.isWinner = true;
+        }
+
         attemptNo++;
         Collections.shuffle(feedback);
         return feedback;
     }
+
+
 
     public boolean isValidAttempt(List<Peg> attempt) {
         if (attempt.size() != 4) {

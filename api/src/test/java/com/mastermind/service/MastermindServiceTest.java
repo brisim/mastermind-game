@@ -2,13 +2,19 @@ package com.mastermind.service;
 
 import com.mastermind.model.Color;
 import com.mastermind.model.Peg;
+import org.hamcrest.Matcher;
+import org.hamcrest.collection.IsIterableContainingInOrder;
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MastermindServiceTest {
@@ -82,7 +88,7 @@ class MastermindServiceTest {
         expectedFeedback.add(new Peg(Color.FeedbackColor.WHITE.name(), 2));
         expectedFeedback.add(new Peg(Color.FeedbackColor.WHITE.name(), 3));
 
-        assertThat(service.check(attempt)).isEqualTo(expectedFeedback);
+        Assert.assertThat(service.check(attempt), containsInAnyOrder(expectedFeedback.toArray()));
     }
 
     @Test
@@ -99,7 +105,7 @@ class MastermindServiceTest {
         expectedFeedback.add(new Peg(Color.FeedbackColor.WHITE.name(), 2));
         expectedFeedback.add(new Peg(Color.FeedbackColor.WHITE.name(), 3));
 
-        assertThat(service.check(attempt)).isEqualTo(expectedFeedback);
+        Assert.assertThat(service.check(attempt), containsInAnyOrder(expectedFeedback.toArray()));
     }
 
     @Test
@@ -116,8 +122,12 @@ class MastermindServiceTest {
         expectedFeedback.add(new Peg(Color.FeedbackColor.RED.name(), 2));
         expectedFeedback.add(new Peg(Color.FeedbackColor.RED.name(), 3));
 
-        assertThat(service.check(attempt)).isEqualTo(expectedFeedback);
+        List<Peg>  actualFeedback = service.check(attempt);
+
+        Assert.assertThat(actualFeedback, containsInAnyOrder(expectedFeedback.toArray()));
     }
+
+
 
     @Test
     void shouldReturn4BlackPegsForNoMatchingColor() {
@@ -133,7 +143,7 @@ class MastermindServiceTest {
         expectedFeedback.add(new Peg(Color.FeedbackColor.BLACK.name(), 2));
         expectedFeedback.add(new Peg(Color.FeedbackColor.BLACK.name(), 3));
 
-        assertThat(service.check(attempt)).isEqualTo(expectedFeedback);
+        Assert.assertThat(service.check(attempt), containsInAnyOrder(expectedFeedback.toArray()));
     }
 
     @Test
@@ -150,7 +160,7 @@ class MastermindServiceTest {
         expectedFeedback.add(new Peg(Color.FeedbackColor.BLACK.name(), 2));
         expectedFeedback.add(new Peg(Color.FeedbackColor.BLACK.name(), 3));
 
-        assertThat(service.check(attempt)).isEqualTo(expectedFeedback);
+        Assert.assertThat(service.check(attempt), containsInAnyOrder(expectedFeedback.toArray()));
     }
 
     @Test

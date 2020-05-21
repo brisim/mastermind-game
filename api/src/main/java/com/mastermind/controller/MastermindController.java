@@ -32,7 +32,7 @@ public class MastermindController {
             return ResponseEntity.badRequest().build();
         }
         List<Peg> feedback = service.check(attempt);
-        FeedbackResponse feedbackResponse = new FeedbackResponse(feedback);
+        FeedbackResponse feedbackResponse = new FeedbackResponse(feedback, false);
         return ResponseEntity.ok(feedbackResponse);
     }
 
