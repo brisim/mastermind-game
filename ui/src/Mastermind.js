@@ -87,6 +87,7 @@ class Mastermind extends React.Component {
             const feedbackResponse = await axios.post(`${baseUrl}/check`, {attempt: attemptRequest}, axiosConfiguration);
             const result = feedbackResponse.data;
             const feedbackFromApi = result.feedback;
+            const isWinner = result.winner;
 
             const activeFeedback = this.state.rows[this.state.activeRow-1].feedback;
 
@@ -99,7 +100,7 @@ class Mastermind extends React.Component {
                 let nextAttempt = this.state.activeRow - 1;
                 let activePeg = 1;
                 this.setState({activeRow: nextAttempt, activePeg: activePeg });
-                if(nextAttempt == 0) {
+                if(nextAttempt == 0 || isWinner) {
                     this.setState({isGameStarted: false})
                     this.revealSecretKey();
                 }
