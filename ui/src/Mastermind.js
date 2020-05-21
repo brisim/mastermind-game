@@ -121,7 +121,7 @@ class Mastermind extends React.Component {
         for(let i = 0; i<10; i++) {
             this.rows[i] = {attempt: [...this.attempt], feedback:[...this.feedback] };
         }
-        this.setState({activeRow: 10, activePeg:1, rows: this.rows});
+        this.setState({activeRow: 10, activePeg:1, rows: this.rows, secretKey:[...this.secretKey]});
     }
 
     render() {
