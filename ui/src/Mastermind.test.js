@@ -122,4 +122,62 @@ describe("<Mastermind/>", () => {
             `${baseUrl}/start`, {"headers": {"Access-Control-Allow-Origin": "*"}}
         );
     })
+
+
+    it("should display You won message", async() => {
+        const wrapper = mount(<Mastermind/>);
+        const checkButton = wrapper.find("#check");
+
+        const startButton = wrapper.find("#start");
+        startButton.simulate('click');
+        await flushPromises();
+        wrapper.update();
+
+        axios.post.mockResolvedValue({"data":
+                {"feedback": [{"position":0, color:"RED"}, {"position":1, color:"RED"},
+                    {"position":2, color:"RED"}, {"position":3, color:"RED"}],
+                "winner": true}
+        });
+
+        axios.get.mockResolvedValue(
+            {"data": ["GREEN", "RED", "ORANGE", "BLUE"] }
+        );
+
+
+        checkButton.simulate('click');
+        await flushPromises();
+        wrapper.update();
+
+        let message = wrapper.find("#message");
+        expect(message.text()).toEqual("You Won!");
+    })
+
+    it("should display Game Over message", async() => {
+        const wrapper = mount(<Mastermind/>);
+        wrapper.setState({ activeRow: 1 });
+        const checkButton = wrapper.find("#check");
+
+        const startButton = wrapper.find("#start");
+        startButton.simulate('click');
+        await flushPromises();
+        wrapper.update();
+
+        axios.post.mockResolvedValue({"data":
+                {"feedback": [{"position":0, color:"BLACK"}, {"position":1, color:"WHITE"},
+                        {"position":2, color:"RED"}, {"position":3, color:"RED"}],
+                    "winner": false}
+        });
+
+        axios.get.mockResolvedValue(
+            {"data": ["GREEN", "RED", "ORANGE", "BLUE"] }
+        );
+
+
+        checkButton.simulate('click');
+        await flushPromises();
+        wrapper.update();
+
+        let message = wrapper.find("#message");
+        expect(message.text()).toEqual("Game Over!");
+    })
 })

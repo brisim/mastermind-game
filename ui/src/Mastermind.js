@@ -26,7 +26,8 @@ class Mastermind extends React.Component {
             activePeg: 1,
             rows: [...this.rows],
             secretKey: this.secretKey,
-            isGameStarted: false
+            isGameStarted: false,
+            message:""
         }
     }
 
@@ -101,11 +102,19 @@ class Mastermind extends React.Component {
                 let activePeg = 1;
                 this.setState({activeRow: nextAttempt, activePeg: activePeg });
                 if(nextAttempt == 0 || isWinner) {
-                    this.setState({isGameStarted: false})
                     this.revealSecretKey();
+                    this.displayMessage("You Won!");
+                }
+                if (nextAttempt == 0 && !isWinner) {
+                    this.revealSecretKey();
+                    this.displayMessage("Game Over!");
                 }
         }
     }
+
+    displayMessage = (message) => {
+        this.setState({message: message});
+}
 
     revealSecretKey = async () => {
         const response = await axios.get(`${baseUrl}/secret-key`, axiosConfiguration);
@@ -132,6 +141,9 @@ class Mastermind extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-sm-6">
+                        <div className="row">
+                            <div className="col border border-dark text-danger text-center" id="message"><b>{this.state.message}</b></div>
+                        </div>
                         <SecretKey config={this.state.secretKey} />
                         <div className="row">
                             <div className="col border border-dark text-danger text-center"> <b> Secret Key </b> </div>
