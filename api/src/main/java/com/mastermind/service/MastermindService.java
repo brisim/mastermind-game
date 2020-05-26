@@ -56,7 +56,7 @@ public class MastermindService {
 
     public List<Peg> check(List<Peg> attempt) {
         List<Peg> feedback = new ArrayList<>();
-
+        this.isWinner = false;
         int index = 0;
         int numberOfRedPegs = 0;
         for (Peg peg: attempt) {
